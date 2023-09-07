@@ -9855,12 +9855,12 @@ async function updateLabelInPR() {
       if (labelsToAdd.length)
         response = await octokit.rest.issues.addLabels({
           ...parameters,
-          name: labelsToAdd[0],
+          labels: labelsToAdd[0],
         });
       else
         response = await octokit.rest.issues.removeLabels({
           ...parameters,
-          name: labelsToRemove[0],
+          labels: labelsToRemove[0],
         });
     } else {
         console.log('else block')
