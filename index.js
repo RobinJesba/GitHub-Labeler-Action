@@ -53,6 +53,7 @@ async function updateLabelInPR() {
           ...parameters,
         }
       );
+      console.log(listAllLabelsResponse)
       const updatedLabels = listAllLabelsResponse.data
         .map((label) => label.name)
         .filter((label) => !labelsToRemove.includes(label))
