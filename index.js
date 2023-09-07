@@ -17,6 +17,9 @@ async function updateLabelInPR() {
         "labelsToAdd, labelsToRemove atleast either one is required!"
       );
 
+    console.log(`Labels To Add => ${labelsToAdd}`);
+    console.log(`Labels To Remove => ${labelsToRemove}`);
+
     const octokit = github.getOctokit(core.getInput("GITHUB_TOKEN"));
     const owner = github.context.payload.repository.owner.login;
     const repo = github.context.payload.pull_request.base.repo.name;
@@ -28,8 +31,6 @@ async function updateLabelInPR() {
       issue_number: pullRequestNumber,
     };
 
-    console.log(labelsToAdd);
-    console.log(labelsToRemove);
     let response;
     if (
       (labelsToAdd.length === 1 && !labelsToRemove.length) ||
@@ -60,7 +61,7 @@ async function updateLabelInPR() {
         labels: updatedLabels,
       });
     }
-    core.info(JSON.stringify(response));
+    core.info(`Response => ${JSON.stringify(response)}`);
   } catch (e) {
     core.setFailed(e.message);
   }

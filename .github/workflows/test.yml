@@ -12,35 +12,28 @@ jobs:
     steps:
         - uses: actions/checkout@v4
         
-        - name: Test Action with Labels to Add
+        - name: Add Single Label Test
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             LABELS_TO_ADD: bug
 
-        - name: Test Action with Labels to Remove
+        - name: Remove Single Label Test
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             LABELS_TO_REMOVE: bug
 
-        - name: Test Action with Labels to Add
+        - name: Add and Remove Single Label Test
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             LABELS_TO_ADD: bug
             LABELS_TO_REMOVE: enhancement
 
-        - name: Test Action with Labels to Remove
-          uses: ./
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_ADD: enhancement
-            LABELS_TO_REMOVE: bug
-
-        - name: Test Action with Multiple Labels
+        - name: Add and Remove Multiple Labels Test
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             LABELS_TO_ADD: bug,feature
-            LABELS_TO_REMOVE: enhancement
+            LABELS_TO_REMOVE: enhancement,duplicate
