@@ -9849,7 +9849,7 @@ async function updateLabelInPR() {
           labels: labelsToAdd,
         });
       else if (labelsToRemove[0])
-        response = await octokit.rest.issues.removeLabels({
+        response = await octokit.rest.issues.removeLabel({
           ...parameters,
           labels: labelsToRemove,
         });
