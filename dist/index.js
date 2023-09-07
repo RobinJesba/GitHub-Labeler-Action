@@ -9840,6 +9840,8 @@ async function updateLabelInPR() {
       issue_number: pullRequestNumber,
     };
 
+    console.log(labelsToAdd);
+    console.log(labelsToRemove);
     let response;
     if ((labelsToAdd.length === 1 && !labelsToRemove.length) || 
         (labelsToRemove.length === 1 && !labelsToAdd.length)) {
