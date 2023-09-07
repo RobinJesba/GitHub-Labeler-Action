@@ -9827,6 +9827,8 @@ async function updateLabelInPR() {
     // const labelsToRemove = [
     //   ...new Set(core.getInput("LABELS_TO_REMOVE").split(",")),
     // ];
+    console.log(labelsToAdd);
+    console.log(labelsToRemove);
     if (!labelsToAdd.length && !labelsToRemove.length)
       throw new Error(
         "labelsToAdd, labelsToRemove atleast either one is required!"
