@@ -1,0 +1,15 @@
+name: 'PR Labeler'
+description: 'Add/Remove labels in PR'
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub Token'
+    required: true
+  LABELS_TO_ADD:
+    description: 'Labels to Add'
+    required: false
+  LABELS_TO_REMOVE:
+    description: 'Labels to Remove'
+    required: false
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
