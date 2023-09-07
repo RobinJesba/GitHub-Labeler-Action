@@ -9819,10 +9819,8 @@ async function updateLabelInPR() {
         `This action is intended to run only on pull_request events, not on ${eventName} events.`
       );
 
-    const labelsToAdd = [...new Set(core.getInput("LABELS_TO_ADD").split(","))];
-    const labelsToRemove = [
-      ...new Set(core.getInput("LABELS_TO_REMOVE").split(",")),
-    ];
+    const labelsToAdd = getInput("LABELS_TO_ADD");
+    const labelsToRemove = getInput("LABELS_TO_REMOVE");
 
     if (!labelsToAdd.length && !labelsToRemove.length)
       throw new Error(
@@ -9843,14 +9841,16 @@ async function updateLabelInPR() {
     console.log(labelsToAdd);
     console.log(labelsToRemove);
     let response;
-    if ((labelsToAdd.length === 1 && !labelsToRemove.length) || 
-        (labelsToRemove.length === 1 && !labelsToAdd.length)) {
-      if (labelsToAdd.length && labelsToAdd[0])
+    if (
+      (labelsToAdd.length === 1 && !labelsToRemove.length) ||
+      (labelsToRemove.length === 1 && !labelsToAdd.length)
+    ) {
+      if (labelsToAdd.length)
         response = await octokit.rest.issues.addLabels({
           ...parameters,
           labels: labelsToAdd,
         });
-      else if (labelsToRemove[0])
+      else
         response = await octokit.rest.issues.removeLabel({
           ...parameters,
           name: labelsToRemove,
@@ -9862,8 +9862,8 @@ async function updateLabelInPR() {
         }
       );
       const updatedLabels = listAllLabelsResponse.data
-        .map(label => label.name)
-        .filter(label => !labelsToRemove.includes(label))
+        .map((label) => label.name)
+        .filter((label) => !labelsToRemove.includes(label))
         .concat(labelsToAdd);
       response = await octokit.rest.issues.setLabels({
         ...parameters,
@@ -9874,6 +9874,17 @@ async function updateLabelInPR() {
   } catch (e) {
     core.setFailed(e.message);
   }
+}
+
+function getInput(name) {
+  return [
+    ...new Set(
+      core
+        .getInput(name)
+        .split(",")
+        .filter((value) => value)
+    ),
+  ];
 }
 
 updateLabelInPR();
