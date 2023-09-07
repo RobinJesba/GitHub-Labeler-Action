@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        labelsToAdd: [bug, feature]
+        labelsToAdd: [[bug,feature]]
         labelsToRemove: [enhancement]
 
     steps:

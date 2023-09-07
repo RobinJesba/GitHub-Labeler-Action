@@ -9,6 +9,8 @@ async function updateLabelInPR() {
         `This action is intended to run only on pull_request events, not on ${eventName} events.`
       );
 
+      console.log(core.getInput("LABELS_TO_ADD"));
+      console.log(core.getInput("LABELS_TO_REMOVE"));
     const labelsToAdd = core.getInput("LABELS_TO_ADD").split(',');
     const labelsToRemove = core.getInput("LABELS_TO_REMOVE").split(',');
     // const labelsToAdd = [...new Set(core.getInput("LABELS_TO_ADD").split(","))];
