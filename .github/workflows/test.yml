@@ -18,22 +18,22 @@ jobs:
             node-version: '20'
 
         - name: Test Action with Labels to Add
+          uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             LABELS_TO_ADD: bug
             LABELS_TO_REMOVE: enhancement
-          uses: ./
 
         - name: Test Action with Labels to Remove
+          uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             LABELS_TO_ADD: enhancement
             LABELS_TO_REMOVE: bug
-          uses: ./
 
         - name: Test Action with Multiple Labels
+          uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             LABELS_TO_ADD: bug,feature
             LABELS_TO_REMOVE: enhancement
-          uses: ./
