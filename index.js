@@ -9,12 +9,12 @@ async function updateLabelInPR() {
         `This action is intended to run only on pull_request events, not on ${eventName} events.`
       );
 
-    // const labelsToAdd = core.getInput("LABELS_TO_ADD");
-    // const labelsToRemove = core.getInput("LABELS_TO_REMOVE");
-    const labelsToAdd = [...new Set(core.getInput("LABELS_TO_ADD").split(","))];
-    const labelsToRemove = [
-      ...new Set(core.getInput("LABELS_TO_REMOVE").split(",")),
-    ];
+    const labelsToAdd = core.getInput("LABELS_TO_ADD").split(',');
+    const labelsToRemove = core.getInput("LABELS_TO_REMOVE").split(',');
+    // const labelsToAdd = [...new Set(core.getInput("LABELS_TO_ADD").split(","))];
+    // const labelsToRemove = [
+    //   ...new Set(core.getInput("LABELS_TO_REMOVE").split(",")),
+    // ];
     if (!labelsToAdd.length && !labelsToRemove.length)
       throw new Error(
         "labelsToAdd, labelsToRemove atleast either one is required!"
