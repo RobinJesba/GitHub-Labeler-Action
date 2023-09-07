@@ -9829,7 +9829,7 @@ async function updateLabelInPR() {
       );
 
     const token = core.getInput("GITHUB_TOKEN");
-    const octokit = github.getOctokit({ auth: token });
+    const octokit = github.getOctokit(token);
     const owner = github.context.payload.repository.owner.login;
     const repo = github.context.payload.pull_request.base.repo.name;
     const pullRequestNumber = github.context.payload.pull_request.number;
