@@ -11,6 +11,18 @@ jobs:
 
     steps:
         - uses: actions/checkout@v4
+        
+        - name: Test Action with Labels to Add
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_ADD: bug
+
+        - name: Test Action with Labels to Remove
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_REMOVE: bug
 
         - name: Test Action with Labels to Add
           uses: ./
