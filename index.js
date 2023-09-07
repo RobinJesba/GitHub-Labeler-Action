@@ -37,6 +37,13 @@ async function updateLabelInPR() {
 
     let response;
     if (labelsToAdd.length === 1 || labelsToRemove.length === 1) {
+        console.log('if block');
+        console.log(labelsToAdd.length);
+        console.log(labelsToAdd[0]);
+        console.log({
+            ...parameters,
+            name: labelsToAdd[0],
+        });
       if (labelsToAdd.length)
         response = await octokit.rest.issues.addLabels({
           ...parameters,
