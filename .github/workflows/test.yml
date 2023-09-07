@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        labelsToAdd: [[bug,feature]]
-        labelsToRemove: [enhancement]
+        labelsToAdd: ["bug,feature"]
+        labelsToRemove: ["enhancement"]
 
     steps:
         - uses: actions/checkout@v4
