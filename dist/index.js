@@ -9842,7 +9842,7 @@ async function updateLabelInPR() {
 
     let response;
     if ((labelsToAdd.length === 1 && !labelsToRemove.length) || 
-        (labelsToRemove.length === 1 || !labelsToAdd.length)) {
+        (labelsToRemove.length === 1 && !labelsToAdd.length)) {
       if (labelsToAdd.length && labelsToAdd[0])
         response = await octokit.rest.issues.addLabels({
           ...parameters,
@@ -9860,8 +9860,8 @@ async function updateLabelInPR() {
         }
       );
       const updatedLabels = listAllLabelsResponse.data
-        .map((label) => label.name)
-        .filter((label) => !labelsToRemove.includes(label))
+        .map(label => label.name)
+        .filter(label => !labelsToRemove.includes(label))
         .concat(labelsToAdd);
       response = await octokit.rest.issues.setLabels({
         ...parameters,
