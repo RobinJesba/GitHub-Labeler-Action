@@ -41,7 +41,7 @@ async function updateLabelInPR() {
       else if (labelsToRemove[0])
         response = await octokit.rest.issues.removeLabel({
           ...parameters,
-          labels: labelsToRemove,
+          name: labelsToRemove,
         });
     } else {
       const listAllLabelsResponse = await octokit.rest.issues.listLabelsOnIssue(
