@@ -6,39 +6,29 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  # test-single-values:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #       - uses: actions/checkout@v4
-
-  #       - name: Test Action with Labels to Add
-  #         uses: ./
-  #         with:
-  #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #           LABELS_TO_ADD: bug
-  #           LABELS_TO_REMOVE: enhancement
-
-  #       - name: Test Action with Labels to Remove
-  #         uses: ./
-  #         with:
-  #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #           LABELS_TO_ADD: enhancement
-  #           LABELS_TO_REMOVE: bug
-
-  test-multiple-values:
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        labelsToAdd: ["bug,feature"]
-        labelsToRemove: ["enhancement"]
 
     steps:
         - uses: actions/checkout@v4
+
+        - name: Test Action with Labels to Add
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_ADD: bug
+            LABELS_TO_REMOVE: enhancement
+
+        - name: Test Action with Labels to Remove
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_ADD: enhancement
+            LABELS_TO_REMOVE: bug
 
         - name: Test Action with Multiple Labels
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_ADD: ${{ matrix.labelsToAdd }}
-            LABELS_TO_REMOVE: ${{ matrix.labelsToRemove }}
+            LABELS_TO_ADD: bug,feature
+            LABELS_TO_REMOVE: enhancement
