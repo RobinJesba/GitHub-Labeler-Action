@@ -9821,8 +9821,8 @@ async function updateLabelInPR() {
 
       console.log(core.getInput("LABELS_TO_ADD"));
       console.log(core.getInput("LABELS_TO_REMOVE"));
-    const labelsToAdd = core.getInput("LABELS_TO_ADD").split(',');
-    const labelsToRemove = core.getInput("LABELS_TO_REMOVE").split(',');
+    const labelsToAdd = core.getInput("LABELS_TO_ADD")//.split(',');
+    const labelsToRemove = core.getInput("LABELS_TO_REMOVE")//.split(',');
     // const labelsToAdd = [...new Set(core.getInput("LABELS_TO_ADD").split(","))];
     // const labelsToRemove = [
     //   ...new Set(core.getInput("LABELS_TO_REMOVE").split(",")),
