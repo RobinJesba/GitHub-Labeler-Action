@@ -9869,12 +9869,10 @@ async function updateLabelInPR() {
       );
       console.log(listAllLabelsResponse.data);
       if (shouldUpdateLabelsInPR(listAllLabelsResponse.data, labelsToAdd, labelsToRemove)) {
-        console.log(1);
         const updatedLabels = listAllLabelsResponse.data
           .map(label => label.name)
           .filter(label => !labelsToRemove.includes(label))
           .concat(labelsToAdd);
-        console.log(updatedLabels);
         response = await octokit.rest.issues.setLabels({
           ...parameters,
           labels: updatedLabels,
