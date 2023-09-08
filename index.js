@@ -86,9 +86,11 @@ function getInput(name) {
 }
 
 function removeCommonValues(labelsToAdd, labelsToRemove) {
+  console.log(labelsToAdd.filter(label => !labelsToRemove.includes(label)));
+  console.log(labelsToRemove.filter(label => !labelsToAdd.includes(label)));
   return [
-    labelsToAdd.filter((item) => !labelsToRemove.includes(item)),
-    labelsToRemove.filter((item) => !labelsToAdd.includes(item)),
+    labelsToAdd.filter(label => !labelsToRemove.includes(label)),
+    labelsToRemove.filter(label => !labelsToAdd.includes(label)),
   ];
 }
 
