@@ -10,30 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        uses: actions/checkout@v4
+        - uses: actions/checkout@v4
+        
+        - name: Add Single Label Test
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_ADD: bug
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
+        - name: Remove Single Label Test
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_REMOVE: bug
 
-      - name: Test Action with Labels to Add
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LABELS_TO_ADD: bug
-          LABELS_TO_REMOVE: enhancement
-        run: node dist/index.js
+        - name: Add and Remove Single Label Test
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_ADD: bug
+            LABELS_TO_REMOVE: enhancement
 
-      - name: Test Action with Labels to Remove
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LABELS_TO_ADD: enhancement
-          LABELS_TO_REMOVE: bug
-        run: node dist/index.js
-
-      - name: Test Action with Multiple Labels
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LABELS_TO_ADD: bug,feature
-          LABELS_TO_REMOVE: enhancement
-        run: node dist/index.js
+        - name: Add and Remove Multiple Labels Test
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_ADD: bug,feature
+            LABELS_TO_REMOVE: enhancement,duplicate
