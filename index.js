@@ -83,7 +83,7 @@ function getInput(name) {
       core
         .getInput(name)
         .split(",")
-        .filter((value) => value)
+        .filter((value) => value.trim())
     ),
   ];
 }
