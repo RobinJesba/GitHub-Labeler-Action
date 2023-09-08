@@ -57,7 +57,6 @@ async function updateLabelInPR() {
           ...parameters,
         }
       );
-      console.log(listAllLabelsResponse.data);
       if (shouldUpdateLabelsInPR(listAllLabelsResponse.data, labelsToAdd, labelsToRemove)) {
         const updatedLabels = listAllLabelsResponse.data
           .map(label => label.name)
@@ -96,13 +95,11 @@ function removeCommonValues(labelsToAdd, labelsToRemove) {
 function shouldUpdateLabelsInPR(existingLabels, labelsToAdd, labelsToRemove) {
   if (!existingLabels.length && labelsToAdd.length) return true;
   if (!existingLabels.length && labelsToRemove.length) return false;
-  if (!existingLabels.length && !labelsToAdd.length && labelsToRemove.length)
-    return false;
   if (existingLabels.length && labelsToAdd.length && labelsToRemove.length)
     return labelsToAdd.every(label => existingLabels.includes(label)) && 
-      labelsToRemove.every(label => !existingLabels.includes(label));
+      labelsToRemove.some(label => !existingLabels.includes(label));
   if (existingLabels.length && labelsToRemove.length)
-    return labelsToRemove.every(label => !existingLabels.includes(label));
+    return labelsToRemove.some(label => !existingLabels.includes(label));
 }
 
 updateLabelInPR();

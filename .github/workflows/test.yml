@@ -16,36 +16,5 @@ jobs:
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_REMOVE: bug,feature
-
-        # - name: 2
-        #   uses: ./
-        #   with:
-        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #     LABELS_TO_ADD: bug
-
-        # - name: 3
-        #   uses: ./
-        #   with:
-        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #     LABELS_TO_ADD: enhancement,feature
-            
-        # - name: 4
-        #   uses: ./
-        #   with:
-        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #     LABELS_TO_REMOVE: bug
-
-        # - name: 5
-        #   uses: ./
-        #   with:
-        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #     LABELS_TO_ADD: bug
-        #     LABELS_TO_REMOVE: enhancement
-
-        # - name: 6
-        #   uses: ./
-        #   with:
-        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #     LABELS_TO_ADD: bug,feature
-        #     LABELS_TO_REMOVE: enhancement,duplicate
+            LABELS_TO_ADD: bug,feature
+            LABELS_TO_REMOVE: invalid
