@@ -9874,7 +9874,7 @@ async function updateLabelInPR() {
           .map(label => label.name)
           .filter(label => !labelsToRemove.includes(label))
           .concat(labelsToAdd);
-        console.log(2);
+        console.log(updatedLabels);
         response = await octokit.rest.issues.setLabels({
           ...parameters,
           labels: updatedLabels,
