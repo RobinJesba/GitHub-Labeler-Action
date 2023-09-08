@@ -9,17 +9,18 @@ async function updateLabelInPR() {
         `This action is intended to run only on pull_request events, not on ${eventName} events.`
       );
 
-    const labelsToAdd = [...new Set(core.getInput("LABELS_TO_ADD").split(","))];
-    const labelsToRemove = [
-      ...new Set(core.getInput("LABELS_TO_REMOVE").split(",")),
-    ];
+    const labelsToAdd = getInput("LABELS_TO_ADD");
+    const labelsToRemove = getInput("LABELS_TO_REMOVE");
+
     if (!labelsToAdd.length && !labelsToRemove.length)
       throw new Error(
         "labelsToAdd, labelsToRemove atleast either one is required!"
       );
 
-    const token = core.getInput("GITHUB_TOKEN");
-    const octokit = github.getOctokit({ auth: token });
+    console.log(`Labels To Add => ${labelsToAdd}`);
+    console.log(`Labels To Remove => ${labelsToRemove}`);
+
+    const octokit = github.getOctokit(core.getInput("GITHUB_TOKEN"));
     const owner = github.context.payload.repository.owner.login;
     const repo = github.context.payload.pull_request.base.repo.name;
     const pullRequestNumber = github.context.payload.pull_request.number;
@@ -31,16 +32,19 @@ async function updateLabelInPR() {
     };
 
     let response;
-    if (labelsToAdd.length === 1 || labelsToRemove.length === 1) {
+    if (
+      (labelsToAdd.length === 1 && !labelsToRemove.length) ||
+      (labelsToRemove.length === 1 && !labelsToAdd.length)
+    ) {
       if (labelsToAdd.length)
         response = await octokit.rest.issues.addLabels({
           ...parameters,
-          name: labelsToAdd[0],
+          labels: labelsToAdd,
         });
       else
-        response = await octokit.rest.issues.removeLabels({
+        response = await octokit.rest.issues.removeLabel({
           ...parameters,
-          name: labelsToRemove[0],
+          name: labelsToRemove,
         });
     } else {
       const listAllLabelsResponse = await octokit.rest.issues.listLabelsOnIssue(
@@ -57,10 +61,21 @@ async function updateLabelInPR() {
         labels: updatedLabels,
       });
     }
-    core.info(response);
+    core.info(`Response => ${JSON.stringify(response)}`);
   } catch (e) {
     core.setFailed(e.message);
   }
+}
+
+function getInput(name) {
+  return [
+    ...new Set(
+      core
+        .getInput(name)
+        .split(",")
+        .filter((value) => value)
+    ),
+  ];
 }
 
 updateLabelInPR();
