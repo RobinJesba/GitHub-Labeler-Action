@@ -12,41 +12,41 @@ jobs:
     steps:
         - uses: actions/checkout@v4
         
-        - name: Common Label Values Test
+        - name: 1
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_ADD: bug
-            LABELS_TO_REMOVE: bug
+            LABELS_TO_ADD: bug, feature
+            LABELS_TO_REMOVE: invalid
         
-        - name: Add Single Label Test
-          uses: ./
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_ADD: bug
+        # - name: 2
+        #   uses: ./
+        #   with:
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #     LABELS_TO_ADD: bug
 
-        - name: Add Multiple Label Test
-          uses: ./
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_ADD: enhancement,feature
+        # - name: 3
+        #   uses: ./
+        #   with:
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #     LABELS_TO_ADD: enhancement,feature
             
-        - name: Remove Single Label Test
-          uses: ./
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_REMOVE: bug
+        # - name: 4
+        #   uses: ./
+        #   with:
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #     LABELS_TO_REMOVE: bug
 
-        - name: Add and Remove Single Label Test
-          uses: ./
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_ADD: bug
-            LABELS_TO_REMOVE: enhancement
+        # - name: 5
+        #   uses: ./
+        #   with:
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #     LABELS_TO_ADD: bug
+        #     LABELS_TO_REMOVE: enhancement
 
-        - name: Add and Remove Multiple Labels Test
-          uses: ./
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_ADD: bug,feature
-            LABELS_TO_REMOVE: enhancement,duplicate
+        # - name: 6
+        #   uses: ./
+        #   with:
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #     LABELS_TO_ADD: bug,feature
+        #     LABELS_TO_REMOVE: enhancement,duplicate
