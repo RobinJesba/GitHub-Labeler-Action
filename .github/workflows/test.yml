@@ -12,12 +12,25 @@ jobs:
     steps:
         - uses: actions/checkout@v4
         
+        - name: Common Label Values Test
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_ADD: bug
+            LABELS_TO_REMOVE: bug
+        
         - name: Add Single Label Test
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             LABELS_TO_ADD: bug
 
+        - name: Add Multiple Label Test
+          uses: ./
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_ADD: enhancement,feature
+            
         - name: Remove Single Label Test
           uses: ./
           with:
