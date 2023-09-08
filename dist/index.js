@@ -9905,11 +9905,10 @@ function removeCommonValues(labelsToAdd, labelsToRemove) {
 function shouldUpdateLabelsInPR(existingLabels, labelsToAdd, labelsToRemove) {
   if (!existingLabels.length && labelsToAdd.length) return true;
   if (!existingLabels.length && labelsToRemove.length) return false;
-  if (existingLabels.length && labelsToAdd.length && labelsToRemove.length)
-    return labelsToAdd.every(label => existingLabels.includes(label)) && 
-      labelsToRemove.some(label => !existingLabels.includes(label));
+  if (existingLabels.length && labelsToAdd.length)
+    return labelsToAdd.some(label => !existingLabels.includes(label));
   if (existingLabels.length && labelsToRemove.length)
-    return labelsToRemove.some(label => !existingLabels.includes(label));
+    return labelsToRemove.some(label => existingLabels.includes(label));
 }
 
 updateLabelInPR();
