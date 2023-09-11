@@ -57,9 +57,9 @@ async function updateLabelInPR() {
           ...parameters,
         }
       );
-      if (shouldUpdateLabelsInPR(listAllLabelsResponse.data, labelsToAdd, labelsToRemove)) {
-        const updatedLabels = listAllLabelsResponse.data
-          .map(label => label.name)
+      const existingLabels = listAllLabelsResponse.data?.map(label => label.name);
+      if (shouldUpdateLabelsInPR(existingLabels, labelsToAdd, labelsToRemove)) {
+        const updatedLabels = existingLabels
           .filter(label => !labelsToRemove.includes(label))
           .concat(labelsToAdd);
         response = await octokit.rest.issues.setLabels({
