@@ -1,5 +1,8 @@
 name: 'GitHub Labeler Action'
-description: 'Add/Remove labels in PR'
+description: 'Add/Remove labels to Pull Request'
+branding:
+  icon: "check-circle"
+  color: "blue"
 inputs:
   GITHUB_TOKEN:
     description: 'GitHub Token'
