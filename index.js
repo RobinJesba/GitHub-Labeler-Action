@@ -4,7 +4,7 @@ const github = require("@actions/github");
 async function updateLabelInPR() {
   try {
     const eventName = github.context.eventName;
-    if (eventName.includes("pull_request"))
+    if (!eventName.includes("pull_request"))
       throw new Error(
         `This action is intended to run only on pull_request events, not on ${eventName} events.`
       );
