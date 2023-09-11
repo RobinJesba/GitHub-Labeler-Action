@@ -16,5 +16,4 @@ jobs:
           uses: ./
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LABELS_TO_ADD: bug
-            LABELS_TO_REMOVE: invalid
+            LABELS_TO_REMOVE: bug,invalid,feature
