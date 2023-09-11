@@ -9867,6 +9867,8 @@ async function updateLabelInPR() {
           ...parameters,
         }
       );
+      console.log(listAllLabelsResponse.data)
+      console.log(shouldUpdateLabelsInPR(listAllLabelsResponse.data, labelsToAdd, labelsToRemove));
       if (shouldUpdateLabelsInPR(listAllLabelsResponse.data, labelsToAdd, labelsToRemove)) {
         const updatedLabels = listAllLabelsResponse.data
           .map(label => label.name)
