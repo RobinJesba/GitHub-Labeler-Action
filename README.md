@@ -29,6 +29,9 @@ To use this action in your workflow, you can add a step like this:
 
 - `LABELS_TO_REMOVE` (optional): A comma-separated list of labels to remove from the pull request.
 
+_Note: At least one of `LABELS_TO_ADD` or `LABELS_TO_REMOVE` should be provided. Providing both is also acceptable, allowing you to both add and remove labels in a single action._
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
