@@ -1,4 +1,4 @@
-name: 'PR Labeler'
+name: 'GitHub Labeler Action'
 description: 'Add/Remove labels in PR'
 inputs:
   GITHUB_TOKEN:
